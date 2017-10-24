@@ -5,6 +5,7 @@ import ru.korbit.saserver.dao.AreaDao;
 import ru.korbit.saserver.domain.Area;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * Created by Artur Belogur on 24.10.17.
@@ -26,5 +27,12 @@ public class AreaDaoImpl extends SessionFactoryHolder implements AreaDao {
     @Override
     public void update(Area area) {
         super.update(area);
+    }
+
+    @Override
+    public Stream<Area> getAll() {
+        return getSession()
+                .createQuery("SELECT c FROM City c", Area.class)
+                .stream();
     }
 }
