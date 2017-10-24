@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ru.korbit.saserver.dao.CityDao;
 import ru.korbit.saserver.domain.City;
+import ru.korbit.saserver.exeptions.AlreadyExist;
 
 import java.util.stream.Collectors;
 
@@ -34,9 +35,15 @@ public class CitiesController {
 
     @PostMapping
     public ResponseEntity<?> addCity(@RequestBody City city) {
-        if (city != null) {
-            cityDao.add(city);
+        if (city == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+
+        if (cityDao.getByName(city.getName()).isPresent()) {
+            throw new AlreadyExist("This city already exist");
+        }
+
+        cityDao.add(city);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

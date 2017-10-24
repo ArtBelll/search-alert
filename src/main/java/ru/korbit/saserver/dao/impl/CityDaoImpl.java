@@ -2,6 +2,7 @@ package ru.korbit.saserver.dao.impl;
 
 import org.springframework.stereotype.Repository;
 import ru.korbit.saserver.dao.CityDao;
+import ru.korbit.saserver.domain.Area;
 import ru.korbit.saserver.domain.City;
 
 import java.util.Optional;
@@ -22,6 +23,14 @@ public class CityDaoImpl extends SessionFactoryHolder implements CityDao {
     @Override
     public Optional<City> get(Long id) {
         return getSession().byId(City.class).loadOptional(id);
+    }
+
+    @Override
+    public Optional<City> getByName(String name) {
+        return getSession()
+                .createQuery("SELECT c FROM City c WHERE c.name = :name", City.class)
+                .setParameter("name", name)
+                .uniqueResultOptional();
     }
 
     @Override

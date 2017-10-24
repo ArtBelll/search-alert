@@ -15,6 +15,8 @@ public interface AreaDao {
 
     Optional<Area> get(@NonNull Long id);
 
+    Optional<Area> getByName(@NonNull String name);
+
     void update(@NonNull Area area);
 
     Stream<Area> getAll();
