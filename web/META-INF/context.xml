@@ -1,0 +1,14 @@
+<Context>
+    <Resource
+            name="jdbc/saserver"
+            auth="Container"
+            type="javax.sql.DataSource"
+            username="saserver"
+            password="art"
+            driverClassName="org.postgresql.Driver"
+            url="jdbc:postgresql://localhost:5432/saserver"
+            testOnBorrow="true"
+            validationQuery="select 1;"
+            />
+
+</Context>
