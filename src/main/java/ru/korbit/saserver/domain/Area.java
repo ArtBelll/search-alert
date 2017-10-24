@@ -29,7 +29,6 @@ public class Area {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "area", fetch = FetchType.LAZY)
     private List<City> cities = new ArrayList<>();
 }
