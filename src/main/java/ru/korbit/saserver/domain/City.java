@@ -29,6 +29,7 @@ public class City {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "area_id")
     private Area area;

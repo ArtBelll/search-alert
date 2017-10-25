@@ -3,6 +3,7 @@ package ru.korbit.saserver.controllers;
 import javassist.tools.web.BadHttpRequest;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +42,9 @@ public class AreasController {
 
     @GetMapping(value = "/cities")
     public ResponseEntity<?> getAreasWithCities() {
-        val areas = areaDao.getAll().collect(Collectors.toList());
+        val areas = areaDao.getAll()
+                .peek(area -> Hibernate.initialize(area.getCities()))
+                .collect(Collectors.toList());
         return new ResponseEntity<>(areas, HttpStatus.OK);
     }
 
