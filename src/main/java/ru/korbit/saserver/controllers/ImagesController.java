@@ -25,7 +25,7 @@ public class ImagesController {
 
     @GetMapping(value = "{imageName}/")
     public ResponseEntity<?> getImage(@PathVariable("imageName") String imageName) throws IOException {
-        val file = new File(String.format(Constants.IMAGE_TEMPLATE, imageName));
+        val file = new File(String.format(Constants.IMAGE_STORE_TEMPLATE, imageName));
         byte[] image = FileUtils.readFileToByteArray(file);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(Files.probeContentType(file.toPath())));

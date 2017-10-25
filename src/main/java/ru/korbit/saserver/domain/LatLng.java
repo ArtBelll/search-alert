@@ -1,5 +1,6 @@
 package ru.korbit.saserver.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,8 +17,8 @@ public class LatLng {
     @Id
     @GeneratedValue
     private long id;
-    @NonNull private Float latitude;
-    @NonNull private Float longitude;
+    @NonNull private Float lat;
+    @NonNull private Float lng;
 
     @ManyToOne
     @JoinColumn(name = "event_id")

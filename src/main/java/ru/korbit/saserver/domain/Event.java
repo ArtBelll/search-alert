@@ -39,7 +39,6 @@ public class Event {
     @Column(name = "links")
     private List<URL> photoUrls = new ArrayList<>();
 
-    @NonNull
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private EventStatus status;
@@ -60,13 +59,12 @@ public class Event {
     @Column(name = "contacts")
     private String contacts;
 
-    @NonNull
     @ManyToOne
     @JoinColumn(name = "organization_id")
     private Organization organization;
 
     @OneToMany(mappedBy = "event")
-    private List<LatLng> startLocations = new ArrayList<>();
+    private List<LatLng> locations = new ArrayList<>();
 
     @ElementCollection
     @Column(name = "logs")

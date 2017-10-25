@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * Created by Artur Belogur on 25.10.17.
  */
 @Entity
-@Table(name = "cities")
+@Table(name = "news")
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
