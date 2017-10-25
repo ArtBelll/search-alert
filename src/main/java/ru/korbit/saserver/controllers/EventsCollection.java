@@ -5,15 +5,16 @@ import lombok.val;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import ru.korbit.saserver.Constants;
 import ru.korbit.saserver.domain.Event;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by Artur Belogur on 24.10.17.
@@ -25,7 +26,8 @@ import java.util.List;
 public class EventsCollection {
 
     @PostMapping
-    public ResponseEntity<?> addEvent(@RequestParam("images") MultipartFile[] images) throws IOException {
+    public ResponseEntity<?> addEvent(@RequestParam("event") Event event,
+                                      @RequestParam("images") MultipartFile[] images) throws IOException {
 
         for (MultipartFile image : images) {
             image.getBytes();

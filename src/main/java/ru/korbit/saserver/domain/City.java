@@ -1,11 +1,14 @@
 package ru.korbit.saserver.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Artur Belogur on 24.10.17.
@@ -27,6 +30,13 @@ public class City {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "city_id")
+    @JoinColumn(name = "area_id")
     private Area area;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "city_event",
+            joinColumns = @JoinColumn(name = "city_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id", referencedColumnName = "id"))
+    private List<Event> events = new ArrayList<>();
 }

@@ -1,11 +1,13 @@
 package ru.korbit.saserver.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Artur Belogur on 24.10.17.
@@ -35,4 +37,8 @@ public class Organization {
 
     @Column(name = "logo")
     private String logo;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "organization")
+    private List<Event> events;
 }
