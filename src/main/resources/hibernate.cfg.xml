@@ -16,6 +16,8 @@
 
         <mapping class="ru.korbit.saserver.domain.Area"/>
         <mapping class="ru.korbit.saserver.domain.City"/>
+        <mapping class="ru.korbit.saserver.domain.Event"/>
+        <mapping class="ru.korbit.saserver.domain.Organization"/>
 
     </session-factory>
 </hibernate-configuration>

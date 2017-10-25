@@ -25,6 +25,8 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"/>
+
     <mvc:cors>
         <mvc:mapping path="/**" />
     </mvc:cors>
