@@ -16,7 +16,6 @@ import ru.korbit.saserver.modeles.SearchParameters;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -52,6 +51,13 @@ public class EventsCollection {
         }
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(value = "{eventId}")
+    public ResponseEntity<?> getEvent(@PathVariable("eventId") Long eventId) {
+        return eventDao.get(eventId)
+                .map(event -> new ResponseEntity<>(event, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @GetMapping(value = "/search")

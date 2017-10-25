@@ -64,7 +64,11 @@ public class AreasController {
 
     @GetMapping(value = "/{areaId}")
     public ResponseEntity<?> getArea(@PathVariable Long areaId) {
-        val area = areaDao.get(areaId);
-        return new ResponseEntity<>(area.get(), HttpStatus.OK);
+        return areaDao.get(areaId)
+                .map(area -> {
+                    Hibernate.initialize(area.getCities());
+                    return new ResponseEntity<>(area, HttpStatus.OK);
+                })
+                .orElse(new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 }
