@@ -22,7 +22,7 @@ public class CityDaoImpl extends SessionFactoryHolder implements CityDao {
 
     @Override
     public Optional<City> get(Long id) {
-        return getSession().byId(City.class).loadOptional(id);
+        return super.get(id, City.class);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class AreaDaoImpl extends SessionFactoryHolder implements AreaDao {
 
     @Override
     public Optional<Area> get(Long id) {
-        return getSession().byId(Area.class).loadOptional(id);
+        return super.get(id, Area.class);
     }
 
     @Override

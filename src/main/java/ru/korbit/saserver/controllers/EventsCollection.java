@@ -5,16 +5,14 @@ import lombok.val;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.korbit.saserver.Constants;
 import ru.korbit.saserver.domain.Event;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Artur Belogur on 24.10.17.
@@ -38,5 +36,10 @@ public class EventsCollection {
         }
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/test")
+    public ResponseEntity<?> search(@RequestParam("status") List<Integer> status) {
+        return new ResponseEntity<>(status, HttpStatus.OK);
     }
 }
